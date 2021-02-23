@@ -6,3 +6,7 @@ services:
       - 5000:5000
     volumes:
       - ./:/usr/src/app
+    command: python run.py
+    environment: 
+      FLASK_ENV: ${FLASK_ENV:-development}
+      PORT: ${PORT:-5000}

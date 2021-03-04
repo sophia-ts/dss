@@ -12,21 +12,25 @@ def home():
 
 @app.route("/api/predict", methods=["POST"])
 def prediction():
-    age = request.form["age"]
-    sex = request.form["sex"]
-    chest_pain = request.form["chestPain"]
-    resting_blood_pressure = request.form["restingBloodPressure"]
-    serum_cholestoral = request.form["serumCholestoral"]
-    fasting_blood_sugar = request.form["fastingBloodSugar"]
-    restingel_ectrocardiographic_results = request.form[
-        "restingelEctrocardiographicResults"
-    ]
-    maximum_heart_rate_achieved = request.form["maximumHeartRateAchieved"]
-    exercise_induced_angina = request.form["exerciseInducedAngina"]
-    oldpeak = request.form["oldpeak"]
-    st_segment = request.form["stSegment"]
-    number_of_vessels = request.form["numberOfVessels"]
-    thal = request.form["thal"]
+    age = int(request.form["age"])
+    sex = int(request.form["sex"])
+    chest_pain = int(request.form["chestPain"])
+    resting_blood_pressure = int(request.form["restingBloodPressure"])
+    serum_cholestoral = int(request.form["serumCholestoral"])
+    fasting_blood_sugar = int(request.form["fastingBloodSugar"])
+    if fasting_blood_sugar > 120:
+        fasting_blood_sugar = 1
+    else:
+        fasting_blood_sugar = 0
+    restingel_ectrocardiographic_results = int(
+        request.form["restingelEctrocardiographicResults"]
+    )
+    maximum_heart_rate_achieved = int(request.form["maximumHeartRateAchieved"])
+    exercise_induced_angina = int(request.form["exerciseInducedAngina"])
+    oldpeak = float(request.form["oldpeak"])
+    st_segment = int(request.form["stSegment"])
+    number_of_vessels = int(request.form["numberOfVessels"])
+    thal = int(request.form["thal"])
 
     data = [
         [
@@ -49,7 +53,6 @@ def prediction():
     data = np.array(data)
 
     prediction = predict(data)
-
     if prediction == [0]:
         response = "Low chance "
     else:

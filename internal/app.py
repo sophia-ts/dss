@@ -58,5 +58,4 @@ def prediction():
     else:
         response = "High chance "
 
-    # return jsonify(response)
     return render_template("index.html", response=response)

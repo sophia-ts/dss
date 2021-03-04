@@ -25,7 +25,6 @@
         <input placeholder="Serum cholestoral in mg/dl" name="serumCholestoral" type="number" required> <br>
         <!-- If > 120 mg/dl then = 1     -->
         <input placeholder="Fasting blood sugar" name="fastingBloodSugar" type="number" required> <br>
-        <!-- <input placeholder="Resting electrocardiographic results" name="restingelEctrocardiographicResults" required> <br> -->
         <label for="restingelEctrocardiographicResults">Restingel Ectrocardiographic Results: </label>
         <select id="restingelEctrocardiographicResults" name="restingelEctrocardiographicResults">
             <option value="0">0</option>
@@ -39,15 +38,13 @@
             <option value="0">Yes</option>
             <option value="1">No</option>
         </select> <br> 
-        <input placeholder="Oldpeak" name="oldpeak" type="number" required> <br>
-        <!-- <input placeholder="Τhe slope of the peak exercise ST segment" name="stSegment" required> <br> -->
+        <input placeholder="Oldpeak" name="oldpeak" type="number" step="0.01" required> <br>
         <label for="stSegment">Slope of the peak exercise ST segment: </label>
         <select id="stSegment" name="stSegment">
             <option value="0">0</option>
             <option value="1">1</option>Yes
             <option value="2">2</option>
         </select> <br> 
-        <!-- <input placeholder="Number of major vessels colored by flourosopy" name="numberOfVessels" required> <br> -->
         <label for="numberOfVessels">Number of major vessels: </label>
         <select id="numberOfVessels" name="numberOfVessels">
             <option value="0">0</option>
@@ -55,7 +52,6 @@
             <option value="2">2</option>
             <option value="3">3</option>
         </select> <br> 
-        <!-- <input placeholder="Thal" name="thal" required> <br> -->
         <label for="numberOfVessels">Thal: </label>
         <select id="thal" name="thal">
             <option value="0">Normal</option>

@@ -4,65 +4,144 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='main.css') }}">
+
+    <title>Heart attack possibility</title>
 </head>
 <body>
-    <form action="/api/predict" method="POST">
-        <input placeholder="Age" name="age" type="number" required> <br>
-        <label for="sex">Sex: </label>
-        <select id="sex" name="sex">
-            <option value="1">Male</option>
-            <option value="2">Female</option>
-        </select> <br>
-        <label for="chestPain">Chest Pain: </label>
-        <select id="chestPain" name="chestPain">
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-        </select> <br>
-        <input placeholder="Resting blood pressure" name="restingBloodPressure" type="number" required> <br>
-        <input placeholder="Serum cholestoral in mg/dl" name="serumCholestoral" type="number" required> <br>
-        <input placeholder="Fasting blood sugar" name="fastingBloodSugar" type="number" required> <br>
-        <label for="restingelEctrocardiographicResults">Restingel Ectrocardiographic Results: </label>
-        <select id="restingelEctrocardiographicResults" name="restingelEctrocardiographicResults">
-            <option value="0">0</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-        </select> <br>
-        <input placeholder="Maximum heart rate achieved" name="maximumHeartRateAchieved" type="number" required> <br>
-        <label for="exerciseInducedAngina">Exercise Induced Angina: </label>
-        <select id="exerciseInducedAngina" name="exerciseInducedAngina">
-            <option value="0">Yes</option>
-            <option value="1">No</option>
-        </select> <br> 
-        <input placeholder="Oldpeak" name="oldpeak" type="number" step="0.01" required> <br>
-        <label for="stSegment">Slope of the peak exercise ST segment: </label>
-        <select id="stSegment" name="stSegment">
-            <option value="0">0</option>
-            <option value="1">1</option>Yes
-            <option value="2">2</option>
-        </select> <br> 
-        <label for="numberOfVessels">Number of major vessels: </label>
-        <select id="numberOfVessels" name="numberOfVessels">
-            <option value="0">0</option>
-            <option value="1">1</option>Yes
-            <option value="2">2</option>
-            <option value="3">3</option>
-        </select> <br> 
-        <label for="numberOfVessels">Thal: </label>
-        <select id="thal" name="thal">
-            <option value="0">Normal</option>
-            <option value="1">Fixed defect</option>Yes
-            <option value="2">Reversable defect</option>
-        </select> <br> 
-        <input type="submit" value="Predict">
+    <form class="form" onsubmit="submitData(event)" id="mainForm" method="POST">
+        <h1>Heart attack possibility</h1>
+        <div class="item">
+            <label for="age">Age: </label>
+            <input placeholder="Age" name="age" type="number" required> 
+        </div>
+        
+        <div class="item">
+            <label for="sex">Sex: </label>
+            <select id="sex" name="sex">
+                <option value="1">Male</option>
+                <option value="2">Female</option>
+            </select>     
+        </div>
+
+        <div class="item"> 
+            <label for="chestPain">Chest Pain: </label>
+            <select id="chestPain" name="chestPain">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+            </select> 
+        </div>
+
+        <div class="item">
+            <label for="restingBloodPressure">Resting blood pressure: </label>
+            <input placeholder="Resting blood pressure" name="restingBloodPressure" type="number" required> 
+        </div>
+
+        <div class="item">
+            <label for="serumCholestoral">Serum cholestoral in mg/dl: </label>
+            <input placeholder="Serum cholestoral in mg/dl" name="serumCholestoral" type="number" required> 
+        </div>
+         
+        <div class="item">
+            <label for="fastingBloodSugar">Fasting blood sugar: </label>
+            <input placeholder="Fasting blood sugar" name="fastingBloodSugar" type="number" required> 
+        </div>
+         
+        <div class="item">
+            <label for="restingelEctrocardiographicResults">Restingel Ectrocardiographic Results: </label>
+            <select id="restingelEctrocardiographicResults" name="restingelEctrocardiographicResults">
+                <option value="0">0</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+            </select> 
+        </div>
+         
+        <div class="item">
+            <label for="maximumHeartRateAchieved">Maximum heart rate achieved: </label>
+            <input placeholder="Max heart rate" name="maximumHeartRateAchieved" type="number" required> 
+        </div>
+         
+        <div class="item">
+            <label for="exerciseInducedAngina">Exercise Induced Angina: </label>
+            <select id="exerciseInducedAngina" name="exerciseInducedAngina">
+                <option value="0">Yes</option>
+                <option value="1">No</option>
+            </select> 
+        </div>
+
+        <div class="item">
+            <label for="Oldpeak">Oldpeak: </label>
+            <input placeholder="Oldpeak" name="oldpeak" type="number" step="0.01" required> 
+        </div>
+         
+        <div class="item">
+            <label for="stSegment">Slope of the peak exercise ST segment: </label>
+            <select id="stSegment" name="stSegment">
+                <option value="0">0</option>
+                <option value="1">1</option>Yes
+                <option value="2">2</option>
+            </select> 
+        </div>
+          
+        <div class="item">
+            <label for="numberOfVessels">Number of major vessels: </label>
+            <select id="numberOfVessels" name="numberOfVessels">
+                <option value="0">0</option>
+                <option value="1">1</option>Yes
+                <option value="2">2</option>
+                <option value="3">3</option>
+            </select> 
+        </div>
+          
+        <div class="item">
+            <label for="numberOfVessels">Thal: </label>
+            <select id="thal" name="thal">
+                <option value="0">Normal</option>
+                <option value="1">Fixed defect</option>Yes
+                <option value="2">Reversable defect</option>
+            </select> 
+        </div>
+        
+        <div class="submit">
+            <input type="submit" value="Predict">
+        </div>
     </form>
 
-    <div>
-        <br>
-        <span> {{response}} </span>
+    <div id="response" class="response">
+         
     </div>
 
+<script>
+    const submitData = (event) => {
+        event.preventDefault()
+        var elements = document.getElementById("mainForm").elements
+        var obj ={}
+        for(var i = 0 ; i < elements.length-1 ; i++){
+            var item = elements.item(i)
+            obj[item.name] = item.value
+        }
+
+        // document.getElementById("mainForm").innerHTML = JSON.stringify(obj)
+
+        fetch('/api/predict', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(obj),
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Success:', data);
+            var responseDiv = document.getElementById("response")
+            responseDiv.innerHTML = data
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        })
+    }
+</script>
 </body>
 </html>

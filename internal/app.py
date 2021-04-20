@@ -12,25 +12,25 @@ def home():
 
 @app.route("/api/predict", methods=["POST"])
 def prediction():
-    age = int(request.form["age"])
-    sex = int(request.form["sex"])
-    chest_pain = int(request.form["chestPain"])
-    resting_blood_pressure = int(request.form["restingBloodPressure"])
-    serum_cholestoral = int(request.form["serumCholestoral"])
-    fasting_blood_sugar = int(request.form["fastingBloodSugar"])
+    age = int(request.json["age"])
+    sex = int(request.json["sex"])
+    chest_pain = int(request.json["chestPain"])
+    resting_blood_pressure = int(request.json["restingBloodPressure"])
+    serum_cholestoral = int(request.json["serumCholestoral"])
+    fasting_blood_sugar = int(request.json["fastingBloodSugar"])
     if fasting_blood_sugar > 120:
         fasting_blood_sugar = 1
     else:
         fasting_blood_sugar = 0
     restingel_ectrocardiographic_results = int(
-        request.form["restingelEctrocardiographicResults"]
+        request.json["restingelEctrocardiographicResults"]
     )
-    maximum_heart_rate_achieved = int(request.form["maximumHeartRateAchieved"])
-    exercise_induced_angina = int(request.form["exerciseInducedAngina"])
-    oldpeak = float(request.form["oldpeak"])
-    st_segment = int(request.form["stSegment"])
-    number_of_vessels = int(request.form["numberOfVessels"])
-    thal = int(request.form["thal"])
+    maximum_heart_rate_achieved = int(request.json["maximumHeartRateAchieved"])
+    exercise_induced_angina = int(request.json["exerciseInducedAngina"])
+    oldpeak = float(request.json["oldpeak"])
+    st_segment = int(request.json["stSegment"])
+    number_of_vessels = int(request.json["numberOfVessels"])
+    thal = int(request.json["thal"])
 
     data = [
         [
@@ -58,4 +58,4 @@ def prediction():
     else:
         response = "High chance "
 
-    return render_template("index.html", response=response)
+    return jsonify(response), 200
